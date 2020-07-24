@@ -13,7 +13,7 @@ export default class Main extends Component {
     this.state = {
       newRepo: '',
       repositories: [],
-      loading: false,
+      loadingProp: false,
     };
   }
 
@@ -24,7 +24,7 @@ export default class Main extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    this.setState({ loading: true });
+    this.setState({ loadingProp: true });
 
     const { newRepo, repositories } = this.state;
 
@@ -37,12 +37,12 @@ export default class Main extends Component {
     this.setState({
       repositories: [...repositories, data],
       newRepo: '',
-      loading: false,
+      loadingProp: false,
     });
   };
 
   render() {
-    const { newRepo, loading } = this.state;
+    const { newRepo, loadingProp } = this.state;
 
     return (
       <Container>
@@ -58,8 +58,8 @@ export default class Main extends Component {
             onChange={this.handleInputChange}
           />
 
-          <SubmitButton loading={loading}>
-            {loading ? (
+          <SubmitButton loadingProp={loadingProp}>
+            {loadingProp ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
               <FaPlus color="#FFF" size={14} />
